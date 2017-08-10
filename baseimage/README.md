@@ -1,4 +1,4 @@
-# This file record how to build a basic image for nginx + php-fpm
+# Record how to build a basic image for nginx + php-fpm
 
 
 ## 0x01 php-fpm
@@ -15,7 +15,7 @@ pull nginx from 163hub
 docker pull hub.c.163.com/library/nginx:latest
 ```
 
-## 0x03 mysql
+## 0x03 mysql(Not use this times)
 pull mysql from 163hub
 ```
 docker pull hub.c.163.com/library/mysql:5.6.36
