@@ -1,4 +1,4 @@
-FROM debain:jessie as builder
+FROM debian:jessie as builder
 
 RUN set -ex \
 	&& apt-get update \
@@ -8,7 +8,7 @@ RUN set -ex \
 	&& cd masscan \
 	&& make
 
-FROM debain:jessie
+FROM debian:jessie
 MAINTAINER sqvds <kali@asus>
 
 RUN apt-get update \
