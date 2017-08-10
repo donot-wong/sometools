@@ -44,9 +44,18 @@ ps:~/study/containerconfig/nginx/conf.d/是放在本机的nginx配置文件
 ## 0x06 link mysql
 如果是再加一个mysql容器该怎么操作？
 在创建php-fpm容器时需要与mysql容器建立连接
+```
 docker run --name server_mysql -d hub.c.163.com/library/mysql:5.6.36
 docker run --name php-fpm-7.1 -d -v ~/study/dockerfiledir:/var/www/html:ro --link server_mysql php:7.1-fpm
+```
+ps: mysql镜像默认没有密码，但是限制非本机的连接，所以要自己付一下权限
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.16.0.2' IDENTIFIED BY 'password' WITH OPTION;
 
+## 0x07 官方镜像没有php一些必备扩展怎么办？
+官方的php-fpm docker镜像中在
+/usr/local/bin目录下有几个脚本用于管理扩展
+如docker-php-ext-install即可用来安装php扩展
+docker-php-ext-enable程序可以用来控制扩展的启动和禁用
 至此完成了nginx + php-fpm容器的创建，在docker官方文档中建议一个容器只运行一个应用，但是docker并没有限制对于一个容器运行多个应用的情况，之前一直在同一个容器中安装多个应用的情况，此次进行一下基本开发镜像的配置，方便以后操作
 
 为了方便对于多个容器互连的管理，可以使用开源docker项目管理工具docker-compose
