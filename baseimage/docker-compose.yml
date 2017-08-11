@@ -1,0 +1,28 @@
+version: '2'
+services:
+    server_nginx:
+        image: "hub.c.163.com/library/nginx:latest"
+        links:
+            - php-fpm-7.1:php
+        ports:
+            - "80:80"
+        volumes:
+            - ~/study/dockerfiledir:/usr/share/nginx/html
+            - ~/study/containerconfig/nginx/conf.d:/etc/nginx/conf.d
+        depends_on:
+            - php-fpm-7.1
+    server_mysql:
+        image: "hub.c.163.com/library/mysql:5.6.36"
+        environment:
+            MYSQL_ROOT_PASSWORD: "123456"
+    php-fpm-7.1:
+        image: "php:7.1-fpm"
+        links:
+            - server_mysql:mysql
+        environment:
+            MYSQL_DB_HOST: mysql:3306
+            MYSQL_DB_PASSWORD: 123456
+        volumes:
+            - ~/study/dockerfiledir:/var/www/html
+        depends_on:
+            - server_mysql

@@ -59,3 +59,16 @@ docker-php-ext-enable程序可以用来控制扩展的启动和禁用
 至此完成了nginx + php-fpm容器的创建，在docker官方文档中建议一个容器只运行一个应用，但是docker并没有限制对于一个容器运行多个应用的情况，之前一直在同一个容器中安装多个应用的情况，此次进行一下基本开发镜像的配置，方便以后操作
 
 为了方便对于多个容器互连的管理，可以使用开源docker项目管理工具docker-compose
+
+
+
+## 0x08 补充
+补充了compose文件，docker-compose非常方便，yel文件的也很直观
+在补充一些小细节
+php-fpm默认没有安装一些扩展，上面提到过，众所周知，安装扩展后需要重启服务，
+php 5.6后， service systemctl找不到php-fpm服务了，是因为缺少pid文件导致，手动建立太麻烦
+其实php-fpm有信号机制，可以通过信号控制
+kill -INT pid 关闭
+kill -USR2 pid 平滑重启并重新载入配置和二进制文件
+kill -USR1 重新打开日志文件
+
