@@ -1,9 +1,13 @@
-°²×°ËùÐè¿â£º
+## Introduction
+¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿
+¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ip¿¿¿web¿¿¿title
+¿¿IPy¿¿¿¿ libnmap¿¿¿¿¿ bs4¿¿¿¿title
+
+## Install Dependes
 pip install -r requirements.txt
 
-ÔËÐÐ£¨python°æ±¾Îª 2.7£©£º
+## Usage
 python scanner.py 215.151.41.0/24
-215.151.41.0/24ÎªËùÐèÒªÉ¨ÃèµÄÍø¶Î
+215.151.41.0/24
 
-±¸×¢£ºÊ±¼ä½ô£¬Ã»ÓÐÎÄ¼þ´¦Àíº¯Êý£¬½¨Òé½«Êä³öÖØ¶¨ÏòÖÁÎÄ¼þ,ÃüÁîÎª£º
-python scanner.py 215.151.41.0/24 > result.txt
+python scanner.py 215.151.41.0/24>result.txt
