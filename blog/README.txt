@@ -1,5 +1,5 @@
 ## Blog
-[http://blog.donot.me](http://blog.donot.me)
+[blog.donot.me](http://blog.donot.me)
 
 
 ## Ghost
