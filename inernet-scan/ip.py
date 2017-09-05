@@ -88,4 +88,7 @@ def iplist(string_startip, string_endip):
         address_c = bin2dec(address_bin[16:24])
         address_d = bin2dec(address_bin[24:32])
         address = address_a + '.' + address_b + '.' + address_c + '.' + address_d
-        yield address
+        if address_d != "255" and address_d != "0":
+            yield address
+        else:
+            pass

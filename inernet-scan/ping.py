@@ -13,7 +13,7 @@ import time
 
 
 ICMP_ECHO_REQUEST = 8   # Platform specific
-DEFAULT_TIMEOUT = 2
+DEFAULT_TIMEOUT = 1
 DEFAULT_COUNT = 2
 
 

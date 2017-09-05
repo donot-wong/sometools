@@ -9,6 +9,7 @@ import os
 import re
 import ip
 import platform
+import scanner
 
 
 def getAllIpAddr():
@@ -69,24 +70,31 @@ def portscan(inet, netmask):
 
 def main():
     banner = '''
-     ___                 _   _      _     ____
-    |_ _|_ __   ___ _ __| \ | | ___| |_  / ___|  ___ __ _ _ __
-     | || '_ \ / _ \ '__|  \| |/ _ \ __| \___ \ / __/ _` | '_ \
+     ___                 _   _      _     ____                  
+    |_ _|_ __   ___ _ __| \ | | ___| |_  / ___|  ___ __ _ _ __  
+     | || '_ \ / _ \ '__|  \| |/ _ \ __| \___ \ / __/ _` | '_ \ 
      | || | | |  __/ |  | |\  |  __/ |_   ___) | (_| (_| | | | |
     |___|_| |_|\___|_|  |_| \_|\___|\__| |____/ \___\__,_|_| |_|
-
-                author: donot email:blog.donot.me
+                                                                
+                author: wang.donot email:wang.donot@gmail.com
                      usage: python scan.py
     '''
+
     print(banner)
+    allIpInfo = getAllIpAddr()
+    for net in allIpInfo:
+        inet, netmask, _ = net
+        choose = raw_input("inet: %s netmask: %s Please Ensure Choose This Interface(Y/N):" % (inet, netmask))
+
+        if choose == "N":
+            continue
+        else:
+            startIp, endIp = getMinAndMaxIp(inet, netmask)
+            target = generateTarget(startIp, endIp)
+            liveScanObj = scanner.LivePcScan(target)
+            livePC = liveScanObj.getPing()
+            print(livePC)
 
 
 if __name__ == '__main__':
-    # allIpInfo = getAllIpAddr()
-    # for net in allIpInfo:
-    #     inet, netmask, _ = net
-    #     startIp, endIp = getMinAndMaxIp(inet, netmask)
-    #     target = generateTarget(startIp, endIp)
-    #     for i in target:
-    #         print(i)
     main()
